@@ -44,7 +44,6 @@ b = tf.Variable(np.float32(np.random.rand(3))*0.1)
 
 y = tf.nn.softmax(((tf.matmul(y0, W) + b)))
 
-
 #cross_entropy = tf.reduce_sum(tf.square(y_ - y))
 cross_entropy = -tf.reduce_sum(y_*tf.log(y))
 

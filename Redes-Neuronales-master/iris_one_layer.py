@@ -13,7 +13,6 @@ def one_hot(x, n):
     o_h[np.arange(len(x)), x] = 1
     return o_h
 
-
 data = np.genfromtxt('iris.data', delimiter=",")
 np.random.shuffle(data)
 x_data = data[:,0:4].astype('f4')

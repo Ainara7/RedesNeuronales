@@ -39,7 +39,6 @@ y_ = tf.placeholder("float", [None, 3])
 # Segunda capa: 3 neuronas 5 entradas
 W = tf.Variable(np.float32(np.random.rand(5, 3))*0.1)
 b = tf.Variable(np.float32(np.random.rand(3))*0.1)
-
 y = tf.nn.softmax(((tf.matmul(y1, W) + b)))
 
 #Error a reducir

@@ -25,14 +25,15 @@ for i in range(20):
     print x_data[i], " -> ", y_data[i]
 print
 
+# Conjunto de datos
 x1 = tf.placeholder("float", [None, 4])
 
 # Primera capa 5 neuronas 4 entradas
 w1 = tf.Variable(np.float32(np.random.rand(4, 5))*0.1)
 b1 = tf.Variable(np.float32(np.random.rand(5))*0.1)
-
 y1 = tf.sigmoid(tf.matmul(x1, w1) + b1)
 
+# Conjunto de datos
 y_ = tf.placeholder("float", [None, 3])
 
 # Segunda capa: 3 neuronas 5 entradas
@@ -63,12 +64,12 @@ for step in xrange(1000):
         batch_xs = x_data[jj*batch_size : jj*batch_size+batch_size]
         batch_ys = y_data[jj*batch_size : jj*batch_size+batch_size]
 
-        sess.run(train, feed_dict={x0: batch_xs, y_: batch_ys})
+        sess.run(train, feed_dict={x1: batch_xs, y_: batch_ys})
         if step % 50 == 0:
-            error = sess.run(cross_entropy, feed_dict={x0: batch_xs, y_: batch_ys})
+            error = sess.run(cross_entropy, feed_dict={x1: batch_xs, y_: batch_ys})
             errorVector.append(error)
             print "Iteration #:", step, "Error: ", error
-            print sess.run(y, feed_dict={x0: batch_xs})
+            print sess.run(y, feed_dict={x1: batch_xs})
             print batch_ys
             print "----------------------------------------------------------------------------------"
 

@@ -26,25 +26,23 @@ for i in range(20):
     print x_data[i], " -> ", y_data[i]
 print
 
-x0 = tf.placeholder("float", [None, 4])
-#y_0 = tf.placeholder("float", [None, 5])
+x1 = tf.placeholder("float", [None, 4])
 
+# Primera capa 5 neuronas 4 entradas
+w1 = tf.Variable(np.float32(np.random.rand(4, 5))*0.1)
+b1 = tf.Variable(np.float32(np.random.rand(5))*0.1)
 
-W0 = tf.Variable(np.float32(np.random.rand(4, 5))*0.1)
-b0 = tf.Variable(np.float32(np.random.rand(5))*0.1)
+y1 = tf.sigmoid(tf.matmul(x1, w1) + b1)
 
-y0 = tf.sigmoid(tf.matmul(x0, W0) + b0) #bien
-
-#x = tf.placeholder("float", [None, 4])
 y_ = tf.placeholder("float", [None, 3])
 
-
+# Segunda capa: 3 neuronas 5 entradas
 W = tf.Variable(np.float32(np.random.rand(5, 3))*0.1)
 b = tf.Variable(np.float32(np.random.rand(3))*0.1)
 
-y = tf.nn.softmax(((tf.matmul(y0, W) + b)))
+y = tf.nn.softmax(((tf.matmul(y1, W) + b)))
 
-#cross_entropy = tf.reduce_sum(tf.square(y_ - y))
+#Error a reducir
 cross_entropy = -tf.reduce_sum(y_*tf.log(y))
 
 #Tasa de aprendizaje
